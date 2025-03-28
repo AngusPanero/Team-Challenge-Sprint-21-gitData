@@ -19,7 +19,6 @@ const App = () => {
       const response = await fetch(`https://api.github.com/users/${userInput}`)
         
       const data = await response.json()
-      console.log(data);
       
       setDataApi(data)
       setError("")
@@ -51,6 +50,7 @@ const App = () => {
             avatar: dataApi.avatar_url,
             followers: dataApi.followers,
             following: dataApi.following,
+            url: dataApi.html_url
           })
         );
       }
@@ -67,25 +67,30 @@ const App = () => {
       <div className="searcher">
         <h1>Search Your GitHub Profile</h1> 
         <div className="h1-input">
-          <input className="user-input" type="text" value={userInput} onChange={(e) => setUserInput(e.target.value)} placeholder="Introduce an User"/> 
-          <button className="user-search" type="button" onClick={handleSubmit}>Search</button>
+
+          <input className="user-input" type="text" value={userInput} 
+          onChange={(e) => setUserInput(e.target.value)} 
+          placeholder="Introduce an User"
+          /> 
+          
+          <button className="user-search" type="button" 
+          onClick={handleSubmit}>Search
+          </button>
         </div>
       </div>
 
-      {users.length > 0 && (
+      
           <div className="users">
             {users.map((user) => (
               <div className="username-card" key={user.id}>
                 <img src={user.avatar}className="photo"alt="profile-photo"/>
-                <p>{user.username}</p>
-                <p>ID: {user.id}</p>
-                <p>Followers: {user.followers}</p>
-                <p>Following: {user.following}</p>
+                <p>{user.username} - ID {user.id}</p>
+                <a href={user.url} target="_blank">GitHub Profile</a>
+                <p>Followers: {user.followers} - Following: {user.following}</p>
                 <button onClick={() => handleRemoveUser(user.id)}>Eliminar</button>
               </div>
             ))}
           </div>
-        )}
     </>
   );
 }

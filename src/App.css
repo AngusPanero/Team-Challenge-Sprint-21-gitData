@@ -8,17 +8,22 @@
     height: 3.4rem;
 }
 
-.photo{
-    width: 15rem;
-    height: auto;
-    border-radius: 150px;
-}
-
 .username-card{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: 0.7s;
+}
+
+.username-card:hover {
+    border-color: #1abc9c; 
+    background: linear-gradient(45deg, #48678352, #405a7438); 
+    box-shadow: 0 0 40px rgba(26, 188, 156, 0.5);
+    transition: 0.7s;
 }
 
 .users{
@@ -40,4 +45,9 @@
 .h1-input{
     display: flex;
     gap: 2rem;
+}
+
+a{
+    color: white;
+    font-weight: 800;
 }
